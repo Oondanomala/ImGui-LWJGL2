@@ -12,6 +12,7 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
+
 repositories {
     mavenCentral {
         metadataSources {
@@ -23,8 +24,9 @@ repositories {
 }
 
 dependencies {
+    // For reference:
+    //compileOnly(libs.imgui.java.lwjgl3)
     compileOnly(libs.imgui.java.binding)
-    compileOnly(libs.imgui.java.lwjgl3)
 
     compileOnly(libs.imgui.java.natives.windows)
     compileOnly(libs.imgui.java.natives.linux)
