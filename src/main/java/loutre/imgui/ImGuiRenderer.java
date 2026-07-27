@@ -3,7 +3,6 @@ package loutre.imgui;
 import imgui.*;
 import imgui.extension.implot.ImPlot;
 import imgui.flag.ImGuiConfigFlags;
-import lombok.Getter;
 import loutre.imgui.lwjgl2.ImGuiDisplay;
 import loutre.imgui.lwjgl2.ImGuiLWJGL2;
 
@@ -12,7 +11,6 @@ public class ImGuiRenderer {
     private final static ImGuiDisplay imGuiDisplay = new ImGuiDisplay();
     private final static ImGuiLWJGL2 imGuiImplGl2 = new ImGuiLWJGL2();
 
-    @Getter
     private static boolean isCreated = false;
 
     public static void create() {
@@ -38,6 +36,9 @@ public class ImGuiRenderer {
         isCreated = true;
     }
 
+    public static boolean isCreated() {
+        return isCreated;
+    }
 
     public static void handleKey() {
         imGuiDisplay.onKey();
@@ -84,6 +85,4 @@ public class ImGuiRenderer {
 
         return convertedRanges;
     }
-
-
 }

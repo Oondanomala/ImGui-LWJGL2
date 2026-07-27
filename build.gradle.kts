@@ -1,11 +1,8 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
     id("java")
-    id("com.gradleup.shadow") version "9.3.0+"
 }
 
-group = "org.example"
+group = "loutre.imgui"
 version = "1.0"
 
 java {
@@ -33,24 +30,5 @@ dependencies {
     compileOnly(libs.imgui.java.natives.linux)
     compileOnly(libs.imgui.java.natives.macos)
 
-    compileOnly("org.projectlombok:lombok:1.18.38")
-    annotationProcessor("org.projectlombok:lombok:1.18.38")
-
     compileOnly("org.lwjgl.lwjgl:lwjgl:2.9.3")
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-
-
-tasks.named<ShadowJar>("shadowJar") {
-    archiveClassifier.set("all")
-    mergeServiceFiles()
-
-    exclude("org.lwjgl.lwjgl:.*")
-}
-
-tasks.build {
-    dependsOn(tasks.shadowJar)
 }
