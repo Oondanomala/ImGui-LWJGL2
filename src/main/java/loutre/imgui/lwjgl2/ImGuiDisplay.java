@@ -9,7 +9,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 
 public class ImGuiDisplay {
-    private boolean mouseButtons[] = new boolean[ImGuiMouseButton.COUNT];
+    private final boolean[] mouseButtons = new boolean[ImGuiMouseButton.COUNT];
     private long time = 0;
 
     public void init() {

@@ -17,6 +17,8 @@ public class ImGuiLWJGL2 {
     public void init() {
         ImGuiIO io = ImGui.getIO();
         io.setBackendRendererName("lwjgl2_opengl2");
+        // TODO: Support textures once the Java bindings implement it
+        //io.addBackendFlags(ImGuiBackendFlags.RendererHasTextures);
     }
 
     public void newFrame() {
