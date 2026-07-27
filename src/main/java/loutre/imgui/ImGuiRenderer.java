@@ -48,7 +48,6 @@ public class ImGuiRenderer {
         imGuiDisplay.onMouse();
     }
 
-
     public static void draw(final Runnable runnable) {
         if (isCreated) {
             imGuiDisplay.newFrame();
