@@ -32,5 +32,10 @@ dependencies {
     compileOnly(libs.imgui.java.natives.linux)
     compileOnly(libs.imgui.java.natives.macos)
 
+    // Optional dependency, but Minecraft already transitively depends on this through OSHI
+    // Used for implementing mouse cursor shapes
+    compileOnly("net.java.dev.jna:jna:3.4.0")
+    compileOnly("net.java.dev.jna:platform:3.4.0")
+
     compileOnly("org.lwjgl.lwjgl:lwjgl:2.9.3")
 }

@@ -4,9 +4,9 @@ A backend for [ImGui-Java](https://github.com/SpaiR/imgui-java) `1.92.7.1` that 
 
 ## Supported Extra Features
 
-None :(
+- Mouse cursor shapes
 
-Please help by contributing!
+Please help to add more features by contributing!
 
 ## Using In Your Projects
 

@@ -2,19 +2,27 @@ package loutre.imgui.lwjgl2;
 
 import imgui.ImGui;
 import imgui.ImGuiIO;
+import imgui.flag.ImGuiBackendFlags;
+import imgui.flag.ImGuiConfigFlags;
 import imgui.flag.ImGuiKey;
 import imgui.flag.ImGuiMouseButton;
+import loutre.imgui.cursor.CursorHandler;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 
 public class ImGuiDisplay {
     private final boolean[] mouseButtons = new boolean[ImGuiMouseButton.COUNT];
+    private CursorHandler cursorHandler;
     private long time = 0;
 
     public void init() {
         ImGuiIO io = ImGui.getIO();
         io.setBackendPlatformName("lwjgl2_display");
+        cursorHandler = CursorHandler.getInstance();
+        if (cursorHandler != null) {
+            io.addBackendFlags(ImGuiBackendFlags.HasMouseCursors);
+        }
     }
 
     public void newFrame() {
@@ -39,6 +47,13 @@ public class ImGuiDisplay {
         for (int i = 0; i < mouseButtons.length; i++) {
             io.setMouseDown(i, mouseButtons[i] || Mouse.isButtonDown(i));
             mouseButtons[i] = false;
+        }
+
+        // Update mouse cursors
+        if (io.getMouseDrawCursor()) {
+            cursorHandler.setCursor(-1);
+        } else if (cursorHandler != null && (io.getConfigFlags() & ImGuiConfigFlags.NoMouseCursorChange) == 0) {
+            cursorHandler.setCursor(ImGui.getMouseCursor());
         }
     }
 
