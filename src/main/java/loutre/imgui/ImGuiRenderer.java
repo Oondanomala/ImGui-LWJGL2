@@ -24,12 +24,9 @@ public class ImGuiRenderer {
         data.setIniFilename("imguilib.ini");
         data.setFontGlobalScale(1F);
 
-
-
         // data.setConfigFlags(ImGuiConfigFlags.DockingEnable);
         // In case you want to enable Viewports on Windows, you have to do this instead of the above line:
         // data.setConfigFlags(ImGuiConfigFlags.DockingEnable | ImGuiConfigFlags.ViewportsEnable);
-
 
         imGuiDisplay.init();
         imGuiImplGl2.init();
@@ -65,6 +62,11 @@ public class ImGuiRenderer {
         }
     }
 
+    /**
+     * @deprecated With the new font ImGui font system this will soon be unnecessary
+     *             (once ImGui-Java adds bindings for the stuff we need to implement texture support)
+     */
+    @Deprecated
     public static short[] getGlyphRangesChineseFull() {
         char[] ranges = {
                 0x0020, 0x00FF,
