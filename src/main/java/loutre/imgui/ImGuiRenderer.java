@@ -13,12 +13,14 @@ public class ImGuiRenderer {
 
     private static boolean isCreated = false;
 
-    public static void create() {
+    public static void create(boolean initImPlot) {
         if (isCreated) {
             return;
         }
         ImGui.createContext();
-        ImPlot.createContext();
+        if (initImPlot) {
+            ImPlot.createContext();
+        }
 
         final ImGuiIO data = ImGui.getIO();
         data.setIniFilename("imguilib.ini");
