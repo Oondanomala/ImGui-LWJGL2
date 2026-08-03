@@ -50,10 +50,12 @@ public class ImGuiDisplay {
         }
 
         // Update mouse cursors
-        if (io.getMouseDrawCursor()) {
-            cursorHandler.setCursor(-1);
-        } else if (cursorHandler != null && (io.getConfigFlags() & ImGuiConfigFlags.NoMouseCursorChange) == 0) {
-            cursorHandler.setCursor(ImGui.getMouseCursor());
+        if (cursorHandler != null) {
+            if (io.getMouseDrawCursor()) {
+                cursorHandler.setCursor(-1);
+            } else if ((io.getConfigFlags() & ImGuiConfigFlags.NoMouseCursorChange) == 0) {
+                cursorHandler.setCursor(ImGui.getMouseCursor());
+            }
         }
     }
 

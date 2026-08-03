@@ -20,7 +20,7 @@ public interface CursorHandler {
      * Returns <tt>null</tt> if no handler for the current OS
      * is found, if initializing the appropriate handler fails
      * (including if JNA is not found in the classpath), or if the
-     * {@code imgui.lwjgl2.disableNative} system property is {@code true}.
+     * {@code imgui.lwjgl2.disableNative} system property is <tt>true</tt>.
      */
     static CursorHandler getInstance() {
         if (Boolean.getBoolean("imgui.lwjgl2.disableNative")) return null;
