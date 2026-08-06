@@ -54,6 +54,7 @@ public class ImGuiDisplay {
         if (cursorHandler != null) {
             if (io.getMouseDrawCursor()) {
                 cursorHandler.setCursor(-1);
+                lastCursor = -1;
             } else if ((io.getConfigFlags() & ImGuiConfigFlags.NoMouseCursorChange) == 0) {
                 int requestedCursor = ImGui.getMouseCursor();
                 if (lastCursor != requestedCursor) {
