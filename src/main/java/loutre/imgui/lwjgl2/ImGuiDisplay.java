@@ -14,6 +14,7 @@ import org.lwjgl.opengl.Display;
 public class ImGuiDisplay {
     private final boolean[] mouseButtons = new boolean[ImGuiMouseButton.COUNT];
     private CursorHandler cursorHandler;
+    private int lastCursor;
     private long time = 0;
 
     public void init() {
@@ -54,7 +55,11 @@ public class ImGuiDisplay {
             if (io.getMouseDrawCursor()) {
                 cursorHandler.setCursor(-1);
             } else if ((io.getConfigFlags() & ImGuiConfigFlags.NoMouseCursorChange) == 0) {
-                cursorHandler.setCursor(ImGui.getMouseCursor());
+                int requestedCursor = ImGui.getMouseCursor();
+                if (lastCursor != requestedCursor) {
+                    cursorHandler.setCursor(requestedCursor);
+                    lastCursor = requestedCursor;
+                }
             }
         }
     }
