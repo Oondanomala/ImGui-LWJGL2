@@ -1,2 +1,2 @@
-rootProject.name = "ImGui"
+rootProject.name = "ImGui-LWJGL2"
 

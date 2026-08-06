@@ -26,8 +26,8 @@ repositories {
 dependencies {
     // For reference:
     //compileOnly(libs.imgui.java.lwjgl3)
-    compileOnly(libs.imgui.java.binding)
 
+    compileOnly(libs.imgui.java.binding)
     compileOnly(libs.imgui.java.natives.windows)
     compileOnly(libs.imgui.java.natives.linux)
     compileOnly(libs.imgui.java.natives.macos)
