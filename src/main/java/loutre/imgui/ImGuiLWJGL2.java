@@ -6,8 +6,8 @@ import imgui.extension.implot.ImPlot;
 import imgui.flag.ImGuiConfigFlags;
 
 public final class ImGuiLWJGL2 {
-    private final static ImGuiDisplay imGuiDisplay = new ImGuiDisplay();
-    private final static ImGuiRenderer imGuiImplGl2 = new ImGuiRenderer();
+    private final static ImGuiPlatform IMGUI_PLATFORM = new ImGuiPlatform();
+    private final static ImGuiRenderer IMGUI_RENDERER = new ImGuiRenderer();
 
     private static boolean isCreated = false;
 
@@ -15,9 +15,8 @@ public final class ImGuiLWJGL2 {
     }
 
     public static void create(boolean initImPlot) {
-        if (isCreated) {
-            return;
-        }
+        if (isCreated) return;
+
         ImGui.createContext();
         if (initImPlot) {
             ImPlot.createContext();
@@ -31,8 +30,8 @@ public final class ImGuiLWJGL2 {
         // In case you want to enable Viewports on Windows, you have to do this instead of the above line:
         // data.setConfigFlags(ImGuiConfigFlags.DockingEnable | ImGuiConfigFlags.ViewportsEnable);
 
-        imGuiDisplay.init();
-        imGuiImplGl2.init();
+        IMGUI_PLATFORM.init();
+        IMGUI_RENDERER.init();
         isCreated = true;
     }
 
@@ -41,22 +40,22 @@ public final class ImGuiLWJGL2 {
     }
 
     public static void handleKey() {
-        imGuiDisplay.onKey();
+        IMGUI_PLATFORM.onKey();
     }
 
     public static void handleMouse() {
-        imGuiDisplay.onMouse();
+        IMGUI_PLATFORM.onMouse();
     }
 
     public static void draw(final Runnable runnable) {
         if (isCreated) {
-            imGuiDisplay.newFrame();
+            IMGUI_PLATFORM.newFrame();
             ImGui.newFrame();
             runnable.run();
             ImGui.render();
 
-            imGuiImplGl2.newFrame();
-            imGuiImplGl2.renderDrawData(ImGui.getDrawData());
+            IMGUI_RENDERER.newFrame();
+            IMGUI_RENDERER.renderDrawData(ImGui.getDrawData());
 
             if (ImGui.getIO().hasConfigFlags(ImGuiConfigFlags.ViewportsEnable)) {
                 ImGui.updatePlatformWindows();

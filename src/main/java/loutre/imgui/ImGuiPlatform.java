@@ -11,7 +11,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 
-class ImGuiDisplay {
+class ImGuiPlatform {
     private final boolean[] mouseButtons = new boolean[ImGuiMouseButton.COUNT];
     private CursorHandler cursorHandler;
     private int lastCursor;
