@@ -10,6 +10,8 @@ Please help to add more features by contributing!
 
 ## Using In Your Projects
 
+This project follows SemVer, so breaking changes will only happen when the major version is incremented.
+
 `build.gradle.kts`:
 ```kotlin
 repositories {
@@ -17,6 +19,6 @@ repositories {
 }
 
 dependencies {
-    implementations("com.github.Oondanomala:ImGui-LWJGL2:main-SNAPSHOT")
+    implementations("com.github.Oondanomala:ImGui-LWJGL2:1.0.0")
 }
 ```
