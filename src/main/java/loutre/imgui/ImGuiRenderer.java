@@ -1,17 +1,18 @@
 package loutre.imgui;
 
-import imgui.*;
+import imgui.ImGui;
+import imgui.ImGuiIO;
 import imgui.extension.implot.ImPlot;
 import imgui.flag.ImGuiConfigFlags;
-import loutre.imgui.lwjgl2.ImGuiDisplay;
-import loutre.imgui.lwjgl2.ImGuiLWJGL2;
 
-
-public class ImGuiRenderer {
+public final class ImGuiRenderer {
     private final static ImGuiDisplay imGuiDisplay = new ImGuiDisplay();
     private final static ImGuiLWJGL2 imGuiImplGl2 = new ImGuiLWJGL2();
 
     private static boolean isCreated = false;
+
+    private ImGuiRenderer() {
+    }
 
     public static void create(boolean initImPlot) {
         if (isCreated) {

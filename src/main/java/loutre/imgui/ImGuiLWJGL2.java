@@ -1,4 +1,4 @@
-package loutre.imgui.lwjgl2;
+package loutre.imgui;
 
 import imgui.ImDrawData;
 import imgui.ImGui;
@@ -10,8 +10,7 @@ import java.nio.ByteBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class ImGuiLWJGL2 {
-
+class ImGuiLWJGL2 {
     private int FontTexture = -1;
 
     public void init() {

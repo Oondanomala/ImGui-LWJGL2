@@ -1,4 +1,4 @@
-package loutre.imgui.lwjgl2;
+package loutre.imgui;
 
 import imgui.ImGui;
 import imgui.ImGuiIO;
@@ -11,7 +11,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 
-public class ImGuiDisplay {
+class ImGuiDisplay {
     private final boolean[] mouseButtons = new boolean[ImGuiMouseButton.COUNT];
     private CursorHandler cursorHandler;
     private int lastCursor;
