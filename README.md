@@ -19,6 +19,6 @@ repositories {
 }
 
 dependencies {
-    implementations("com.github.Oondanomala:ImGui-LWJGL2:1.0.0")
+    implementations("com.github.Oondanomala:ImGui-LWJGL2:1.0.1")
 }
 ```
