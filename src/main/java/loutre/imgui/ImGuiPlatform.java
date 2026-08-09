@@ -12,7 +12,6 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 
 class ImGuiPlatform {
-    private final boolean[] mouseButtons = new boolean[ImGuiMouseButton.COUNT];
     private CursorHandler cursorHandler;
     private int lastCursor;
     private long time = 0;
@@ -37,18 +36,13 @@ class ImGuiPlatform {
 
         // set delta
         long nutime = System.currentTimeMillis();
-        float delta =
-                time > 0 ? (float) (((double) nutime - time) / 1000.0) : 1.0f / 60;
+        float delta = time > 0 ? (float) (((double) nutime - time) / 1000.0) : 1.0f / 60;
         // prevent failed assert for delta > 0.0f
         io.setDeltaTime((delta > 0.0f) ? delta : 0.01f);
         time = nutime;
 
         // mouse input
-        io.setMousePos((float) Mouse.getX(), wh - (float) Mouse.getY());
-        for (int i = 0; i < mouseButtons.length; i++) {
-            io.setMouseDown(i, mouseButtons[i] || Mouse.isButtonDown(i));
-            mouseButtons[i] = false;
-        }
+        io.addMousePosEvent((float) Mouse.getX(), wh - (float) Mouse.getY());
 
         // Update mouse cursors
         if (cursorHandler != null) {
@@ -66,34 +60,22 @@ class ImGuiPlatform {
     }
 
     public void onMouse() {
-        if (Mouse.getEventDWheel() != 0)
-            onMouseWheel(Mouse.getEventDWheel());
-        if (Mouse.getEventButton() != -1) {
-            onMouseButton(
-                    Mouse.getEventButton(), Mouse.getEventButtonState()
-            );
+        int mouseWheel = Mouse.getEventDWheel();
+        if (mouseWheel != 0) {
+            ImGui.getIO().addMouseWheelEvent(0, (float) (mouseWheel / 120));
         }
-    }
-
-    public void onMouseButton(int button, boolean pressed) {
-        if (pressed && button > 0 && button < mouseButtons.length) {
-            mouseButtons[button] = true;
+        int button = Mouse.getEventButton();
+        if (button >= 0 && button < ImGuiMouseButton.COUNT) {
+            ImGui.getIO().addMouseButtonEvent(button, Mouse.getEventButtonState());
         }
-    }
-
-    public void onMouseWheel(int scrolldelta) {
-        ImGuiIO io = ImGui.getIO();
-        io.setMouseWheel(io.getMouseWheel() + (float) (scrolldelta / 120));
     }
 
     public void onKey() {
+        ImGuiIO io = ImGui.getIO();
         int key = Keyboard.getEventKey() == 0 ?
                 Keyboard.getEventCharacter() : Keyboard.getEventKey();
-        onKey(key, Keyboard.getEventKeyState());
-    }
+        boolean pressed = Keyboard.getEventKeyState();
 
-    public void onKey(int key, boolean pressed) {
-        ImGuiIO io = ImGui.getIO();
         io.addKeyEvent(keyToImGuiKey(key), pressed);
         int modifier = keyToImGuiModifier(key);
         if (modifier != 0) io.addKeyEvent(modifier, pressed);
