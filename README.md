@@ -14,11 +14,16 @@ This project follows SemVer, so breaking changes will only happen when the major
 
 `build.gradle.kts`:
 ```kotlin
-repositories {
-    maven("https://jitpack.io")
-}
-
 dependencies {
-    implementations("com.github.Oondanomala:ImGui-LWJGL2:1.0.1")
+    implementations("loutre.imgui:ImGui-LWJGL2:1.0.2")
+}
+```
+
+`settings.gradle.kts`:
+```kotlin
+sourceControl {
+    gitRepository(java.net.URI("https://github.com/Oondanomala/ImGui-LWJGL2.git")) {
+        producesModule("loutre.imgui:ImGui-LWJGL2")
+    }
 }
 ```
