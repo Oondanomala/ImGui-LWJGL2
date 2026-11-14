@@ -50,7 +50,7 @@ final class WindowsCursorHandler implements CursorHandler {
     }
 
     public void setCursor(int imGuiCursorShape) {
-        if (imGuiCursorShape == -1) {
+        if (imGuiCursorShape == ImGuiMouseCursor.None) {
             SetCursor(null);
         } else {
             SetCursor(cursors[imGuiCursorShape]);

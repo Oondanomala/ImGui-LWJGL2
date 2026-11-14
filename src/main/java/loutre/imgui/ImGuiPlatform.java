@@ -6,6 +6,7 @@ import imgui.flag.ImGuiBackendFlags;
 import imgui.flag.ImGuiConfigFlags;
 import imgui.flag.ImGuiKey;
 import imgui.flag.ImGuiMouseButton;
+import imgui.flag.ImGuiMouseCursor;
 import loutre.imgui.cursor.CursorHandler;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -13,7 +14,7 @@ import org.lwjgl.opengl.Display;
 
 class ImGuiPlatform {
     private CursorHandler cursorHandler;
-    private int lastCursor;
+    private int lastCursor = ImGuiMouseCursor.Arrow;
     private long time = 0;
 
     public void init() {
@@ -47,8 +48,10 @@ class ImGuiPlatform {
         // Update mouse cursors
         if (cursorHandler != null) {
             if (io.getMouseDrawCursor()) {
-                cursorHandler.setCursor(-1);
-                lastCursor = -1;
+                if (lastCursor != ImGuiMouseCursor.None) {
+                    cursorHandler.setCursor(ImGuiMouseCursor.None);
+                    lastCursor = ImGuiMouseCursor.None;
+                }
             } else if ((io.getConfigFlags() & ImGuiConfigFlags.NoMouseCursorChange) == 0) {
                 int requestedCursor = ImGui.getMouseCursor();
                 if (lastCursor != requestedCursor) {
@@ -57,6 +60,10 @@ class ImGuiPlatform {
                 }
             }
         }
+    }
+
+    public void resetMouseCursor() {
+        lastCursor = ImGuiMouseCursor.Arrow;
     }
 
     public void onMouse() {

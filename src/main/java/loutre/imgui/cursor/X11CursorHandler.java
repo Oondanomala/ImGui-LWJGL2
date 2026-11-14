@@ -42,23 +42,22 @@ final class X11CursorHandler implements CursorHandler {
             display = new X11.Display();
             display.setPointer(new Pointer(displayPtr));
             window = new X11.Window(windowPtr);
-
-            // See https://github.com/libsdl-org/SDL/blob/5924f36dc6e3d00cf3d25f81d18c5e1bce75ed7c/src/video/SDL_video.c#L6458
-            // and https://github.com/libsdl-org/SDL/blob/412a7c5db639399b1bbaa4516d56f390884ea28b/include/SDL3/SDL_mouse.h#L97
-            cursors[ImGuiMouseCursor.Arrow] = loadCursor("default");
-            cursors[ImGuiMouseCursor.TextInput] = loadCursor("text");
-            cursors[ImGuiMouseCursor.ResizeAll] = loadCursor("move");
-            cursors[ImGuiMouseCursor.ResizeNS] = loadCursor("ns-resize");
-            cursors[ImGuiMouseCursor.ResizeEW] = loadCursor("ew-resize");
-            cursors[ImGuiMouseCursor.ResizeNESW] = loadCursor("nesw-resize");
-            cursors[ImGuiMouseCursor.ResizeNWSE] = loadCursor("nwse-resize");
-            cursors[ImGuiMouseCursor.Hand] = loadCursor("pointer");
-            cursors[ImGuiMouseCursor.Wait] = loadCursor("wait");
-            cursors[ImGuiMouseCursor.Progress] = loadCursor("progress");
-            cursors[ImGuiMouseCursor.NotAllowed] = loadCursor("not-allowed");
         } catch (ReflectiveOperationException e) {
             throw new IllegalStateException(e);
         }
+        // See https://github.com/libsdl-org/SDL/blob/5924f36dc6e3d00cf3d25f81d18c5e1bce75ed7c/src/video/SDL_video.c#L6458
+        // and https://github.com/libsdl-org/SDL/blob/412a7c5db639399b1bbaa4516d56f390884ea28b/include/SDL3/SDL_mouse.h#L97
+        cursors[ImGuiMouseCursor.Arrow] = loadCursor("default");
+        cursors[ImGuiMouseCursor.TextInput] = loadCursor("text");
+        cursors[ImGuiMouseCursor.ResizeAll] = loadCursor("move");
+        cursors[ImGuiMouseCursor.ResizeNS] = loadCursor("ns-resize");
+        cursors[ImGuiMouseCursor.ResizeEW] = loadCursor("ew-resize");
+        cursors[ImGuiMouseCursor.ResizeNESW] = loadCursor("nesw-resize");
+        cursors[ImGuiMouseCursor.ResizeNWSE] = loadCursor("nwse-resize");
+        cursors[ImGuiMouseCursor.Hand] = loadCursor("pointer");
+        cursors[ImGuiMouseCursor.Wait] = loadCursor("wait");
+        cursors[ImGuiMouseCursor.Progress] = loadCursor("progress");
+        cursors[ImGuiMouseCursor.NotAllowed] = loadCursor("not-allowed");
     }
 
     private static X11.Cursor loadCursor(String name) {
@@ -71,7 +70,7 @@ final class X11CursorHandler implements CursorHandler {
 
     @Override
     public void setCursor(int imGuiCursorShape) {
-        if (imGuiCursorShape == -1) {
+        if (imGuiCursorShape == ImGuiMouseCursor.None) {
             // TODO: Hide cursor (rarely used)
         } else {
             XDefineCursor(display, window, cursors[imGuiCursorShape]);

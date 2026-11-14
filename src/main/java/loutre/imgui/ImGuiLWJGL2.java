@@ -64,6 +64,10 @@ public final class ImGuiLWJGL2 {
         }
     }
 
+    public static void resetMouseCursor() {
+        IMGUI_PLATFORM.resetMouseCursor();
+    }
+
     /**
      * @deprecated With the new font ImGui font system this will soon be unnecessary
      *             (once ImGui-Java adds bindings for the stuff we need to implement texture support)
