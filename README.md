@@ -15,7 +15,7 @@ This project follows SemVer, so breaking changes will only happen when the major
 `build.gradle.kts`:
 ```kotlin
 dependencies {
-    implementations("loutre.imgui:ImGui-LWJGL2:1.0.3")
+    implementations("loutre.imgui:ImGui-LWJGL2:1.0.4")
 }
 ```
 

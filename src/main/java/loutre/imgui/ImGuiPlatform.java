@@ -48,7 +48,7 @@ class ImGuiPlatform {
         // Update mouse cursors
         if (cursorHandler != null) {
             if (io.getMouseDrawCursor()) {
-                if (lastCursor != ImGuiMouseCursor.None) {
+                if (Mouse.isInsideWindow()) {
                     cursorHandler.setCursor(ImGuiMouseCursor.None);
                     lastCursor = ImGuiMouseCursor.None;
                 }
